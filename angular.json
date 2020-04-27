@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-firebase-deploy"
+    }
+  },
+  "defaultProject": "angular-firebase-deploy",
+  "cli": {
+    "analytics": false
+  }
 }
