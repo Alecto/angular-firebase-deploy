@@ -44,7 +44,9 @@ export class HttpService {
   }
 
   update(task: Task): Observable<Task> {
-    return this.http.put<Task>(`${url}/${task.id}.json`, task, httpOptions).pipe(
+    const body: Task = {title: task.title, date: task.date};
+
+    return this.http.put<Task>(`${url}/${task.id}.json`, body, httpOptions).pipe(
       tap(res => console.log('PUT:', res)),
       catchError(this.errorHandler<Task>('PUT'))
     );
