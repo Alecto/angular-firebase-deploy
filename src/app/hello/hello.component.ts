@@ -78,7 +78,7 @@ export class HelloComponent implements OnInit {
   updateTask(task: Task) {
     task.title = this.task.title;
     task.date = this.task.date;
-    this.http.update(task).subscribe(res => console.log(res));
+    this.http.update(task).subscribe();
   }
 
   deleteTask(task: Task) {
