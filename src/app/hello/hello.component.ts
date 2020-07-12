@@ -72,7 +72,8 @@ export class HelloComponent implements OnInit {
           obj.id = key;
           this.tasks.push(obj);
         });
-      });
+      }
+    );
   }
 
   updateTask(task: Task) {
@@ -81,8 +82,7 @@ export class HelloComponent implements OnInit {
     this.http.update(t).subscribe(() => {
       task.title = this.task.title;
       task.date = this.task.date;
-    }
-    );
+    });
   }
 
   deleteTask(task: Task) {
