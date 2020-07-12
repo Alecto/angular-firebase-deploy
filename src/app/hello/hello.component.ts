@@ -10,19 +10,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class HelloComponent implements OnInit {
 
   form: FormGroup;
-  task: Task = {id: null, title: null, date: null};
+  task: Task = { id: null, title: null, date: null };
   tasks: Task[] = [];
 
   constructor(private http: HttpService, private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
-    this.initDate();
+    this.initData();
     this.buildForm();
     this.readAllTasks();
   }
 
-  private initDate() {
+  private initData() {
     let date: Date | string = new Date();
     let month: number | string = date.getMonth() + 1;
     const day = date.getDate();
@@ -76,9 +76,13 @@ export class HelloComponent implements OnInit {
   }
 
   updateTask(task: Task) {
-    task.title = this.task.title;
-    task.date = this.task.date;
-    this.http.update(task).subscribe();
+    const t: Task = { id: task.id, title: this.task.title, date: this.task.date };
+
+    this.http.update(t).subscribe(() => {
+      task.title = this.task.title;
+      task.date = this.task.date;
+    }
+    );
   }
 
   deleteTask(task: Task) {
